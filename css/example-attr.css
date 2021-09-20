@@ -1,0 +1,32 @@
+/*
+	Example of using assigned data attributes to set styles
+*/
+
+.dashboard {
+	background: #444;
+	position: fixed;
+	left:0;
+	top:0;
+	width:320px;
+	height:100%;
+	font:12px sans-serif;
+	color:#fff;
+	}
+
+/* Separator style */
+.dashboard > hr {
+	border-top:1px solid #000;
+	border-bottom:none;
+	margin:9px 0;
+	}
+
+/* Groups (replaces the line class */
+div[data-type="group"] {
+	background:#496165;
+	padding-bottom:7px;
+	margin-bottom:9px;
+	}
+
+div[data-type="group"] .line {
+	margin-bottom:0;
+	}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Epistemex Logo Maker</title>
+  <style>
+    html, body {
+      margin:0;
+      }
+    body {
+      background:#1d1d1e;
+      }
+    canvas {border:1px solid; background:#202021}
+    .area {margin-left:340px}
+  </style>
+  <link rel="stylesheet" href="css/example.css">
+</head>
+<body>
+
+<div class="area">
+  <canvas id="main"></canvas>
+  <canvas id="logo"></canvas>
+</div>
+
+<script src="js/dashboard.min.js"></script>
+<script src="js/matrix.min.js"></script>
+<script src="js/canvas-mouse.min.js"></script>
+<script>
+  	// Creates an instance with a common callback
+    var db = new Dashboard({callback: function() {update()} })
+
+    // Build dashboard - we could call add for each item; here we use an array instead
+      .add([
+        {type: "text"  , text: "<h2>Part settings</h2>", raw: true},
+        {type: "slider", label: "Segments", min: 1, max: 32, value: 5, live: true, bind: "segments"},
+        {type: "slider", label: "Global Scale", min: 0.05, max: 5, value: 1, step: 0.05, formatter: fmtTwo, live: true, bind: "glScale"},
+        {type: "slider", label: "Offset angle", min: -180, max: 180, value: -17.6, step: 0.1, formatter: fmtOne, live: true, bind: "offset"},
+        {type: "separator"},
+        {type: "slider", label: "Part Rotation", min: -180, max: 180, value: 0, step: 0.25, formatter: fmtTwo, live: true, bind: "rotation"},
+        {type: "slider", label: "Part Radius", min: -500, max: 500, value: 150, live: true, bind: "radius"},
+        {type: "slider", label: "Part Scale", min: 1, max: 250, value: 100, live: true, bind: "scale"},
+        {type: "slider", label: "Part Offset X", min: -100, max: 100, value: 0, step: 0.5, formatter: fmtOne, live: true, bind: "offsetX"},
+        {type: "slider", label: "Part Offset Y", min: -100, max: 100, value: 0, step: 0.5, formatter: fmtOne, live: true, bind: "offsetY"},
+        {type: "checkbox", label: "Outline", bind: "outline"},
+        {type: "checkbox", label: "Mirror shape", bind: "mirror"},
+        {type: "color" , label: "Main color", color: "#707070", bind: "color"},
+        {type: "group", label: "Golden spiral guide", collapsed: true, items: [
+          {type: "checkbox", label: "Golden spiral", bind: "spiral"},
+          {type: "checkbox", label: "Mirror", bind: "gsMirror"},
+          {type: "slider", label: "Turns", min: 2, max: 5, step: 0.01, formatter: fmtTwo, value: 3, live: true, bind: "gsTurns"},
+          {type: "slider", label: "Scale", min: 0.1, max: 12, value: 1, step: 0.05, formatter: fmtTwo, live: true, bind: "gsScale"},
+          {type: "slider", label: "Start angle", min: -180, max: 180, value: 0, live: true, bind: "gsAngle"},
+          {type: "slider", label: "Offset X", min: 0, max: 720, value: 360, live: true, bind: "gsOffsetX"},
+          {type: "slider", label: "Offset Y", min: 0, max: 720, value: 360, live: true, bind: "gsOffsetY"}
+        ]},
+        {type: "button", label: "Snapshot", text: "Create", callback: function() {makeSnapshot()}} /*,
+        {type: "radio", label: "Radio buttons", group: "radios", items: ["radio 1", "radio 2", "radio 3"]},
+        {type: "dropdown", label: "A dropdown", items: ["option 1", "option 2", "option 3"]},
+        {type: "color"   , label: "A color picker"},
+        {type: "button"  , label: "A button", text: "Hit me!"},
+        {type: "info"    , label: "Some info", text: "Information"},
+        {type: "separator"},
+
+        {type: "text" , text: "<b style='color:#fd0'>Open console to see events ( F12 ).</b>"},
+        {type: "image", value: "http://i.imgur.com/wZSsyt8.png"},
+        {type: "link", text: "This is a link", value: "http://i.imgur.com/wZSsyt8.png"}*/
+      ]);
+
+    function fmtOne(v) {return (+v).toFixed(1)}
+    function fmtTwo(v) {return (+v).toFixed(2)}
+
+</script>
+<script src="js/points.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
