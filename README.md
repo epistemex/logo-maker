@@ -1,3 +1,25 @@
+Logo Maker
+==========
+
+A basic logo maker for creating logo symbols.
+
+You can use it freely for personal and non-commercial projects, **but for companies or commercial or
+monetizing use there is a one-time fee of USD 50 per symbol** (please use the PayPal link below for
+now - I can send invoice if you need one.)
+
+Todos
+-----
+
+- Export as SVG
+- More coloring options
+
+_Help keep the project alive by supporting the developer:_
+
+[![PayPalMe](https://github.com/epistemex/transformation-matrix-js/assets/70324091/04203267-58f0-402b-9589-e2dee6e7c510)](https://paypal.me/KenNil)
+
+
+Examples
+--------
 
 ![logotest9](https://github.com/epistemex/logo-maker/assets/70324091/054806b5-7637-4e29-abd7-25cda8293d24)
 ![logotest8](https://github.com/epistemex/logo-maker/assets/70324091/6a411678-8085-4b90-aa26-9926e25c4ee7)
@@ -8,3 +30,7 @@
 ![logotest3](https://github.com/epistemex/logo-maker/assets/70324091/f5524a61-87db-4fbb-96d7-3aee94f238fc)
 ![logotest2](https://github.com/epistemex/logo-maker/assets/70324091/bce6033d-de19-469a-85e2-5b1d39414eec)
 ![logotest1](https://github.com/epistemex/logo-maker/assets/70324091/2fb5f8c4-6502-4e05-a07b-0b456a0cdb67)
+
+Copyright (c) 2020, 2024 epistemex
+
+![Epistemex](https://i.imgur.com/GP6Q3v8.png)
