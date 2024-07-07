@@ -7,6 +7,16 @@ You can use it freely for personal and non-commercial projects, **but for compan
 monetizing use there is a one-time fee of USD 50 per symbol** (please use the PayPal link below for
 now - I can send invoice if you need one.)
 
+How To Use
+----------
+
+- Download and extract the files.
+- Start a local server (for example using python or a lightweight server.) (Optional)
+- Open the index.html file
+
+You can skip the second step if you want, but be aware of that you cannot save the image file using
+the button, but have to instead right-click the preview image and chose Save as.
+
 Todos
 -----
 
