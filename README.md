@@ -5,14 +5,14 @@ A basic logo maker for creating logo symbols.
 
 You can use it freely for personal and non-commercial projects, **but for companies or commercial or
 monetizing use there is a one-time fee of USD 50 per symbol** (please use the PayPal link below for
-now - I can send invoice if you need one.)
+now - I can send an invoice if you need one.)
 
 ![2024-07-06_22-02-36](https://github.com/epistemex/logo-maker/assets/70324091/139ae81a-f1a0-4fcc-91a7-4be3209918b3)
 
 How To Use
 ----------
 
-- Download and extract the files.
+- Download and extract the files from this repository.
 - Start a local server (for example using python or a lightweight server.) (Optional)
 - Open the index.html file
 
