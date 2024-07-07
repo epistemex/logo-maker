@@ -1,9 +1,9 @@
 /*
-	MAIN APP ver 0.1.0 alpha
-	Copyright (c) 2018 Epistemex
+	MAIN APP ver 0.2.0 alpha
+	Copyright (c) 2018, 2024 Epistemex
 */
 
-var snapshots = [];
+let snapshots = [];
 
 /*-----------------------------------------------------------------------------------------------------------------*\
 
@@ -11,17 +11,17 @@ var snapshots = [];
 
 \*-----------------------------------------------------------------------------------------------------------------*/
 
-var editor = (function(updater) {
+const editor = (function(updater) {
 
-  var c = document.getElementById('main');
-  var ctx = c.getContext('2d');
-  var ph = new PointHost(ctx);
-  var cm = new CanvasMouse(ctx);
-  var isDown = false, gPointI = -1, gPoint, ref;
-  var isMoving = false, dpos;
+  const c = document.getElementById('main');
+  const ctx = c.getContext('2d');
+  const ph = new PointHost(ctx);
+  const cm = new CanvasMouse(ctx);
+  let isDown = false, gPointI = -1, gPoint, ref;
+  let isMoving = false, dpos;
 
-  var editScale = 300;
-  var editTransX = 0.75, editTransY = 0.75;
+  let editScale = 300;
+  let editTransX = 0.75, editTransY = 0.75;
 
   c.width = c.height = 720;
 
@@ -61,7 +61,7 @@ var editor = (function(updater) {
 
   c.onmousedown = function(e) {
     e.preventDefault();
-    var pos = cm.getPos(e), i = 0, point;
+    let pos = cm.getPos(e), i = 0, point;
     while( point = ph.points[ i++ ] ) {
       if ( point.inPoint(pos) ) {
         gPoint = point;
@@ -89,7 +89,7 @@ var editor = (function(updater) {
   window.addEventListener('mousemove', function(e) {
     cancelAnimationFrame(ref);
     ref = requestAnimationFrame(function() {
-      var pos = cm.getPos(e);
+      const pos = cm.getPos(e);
       if ( pos.x >= 0 && pos.x < c.width && pos.y >= 0 && pos.y < c.height ) {
         if ( isDown ) gPoint.pos(pos);
         else if ( isMoving ) {
@@ -104,7 +104,7 @@ var editor = (function(updater) {
 
   function renderAll(pos) {
 
-    var cfg = db.getBound();
+    const cfg = db.getBound();
 
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, c.width, c.height);
@@ -148,9 +148,9 @@ var editor = (function(updater) {
     ctx.lineTo(p2.x, p2.y);
 
     // tangent
-    var dx = p2.x - p1.x;
-    var dy = p2.y - p1.y;
-    var a = Math.atan2(dy, dx) - Math.PI * 0.5;
+    const dx = p2.x - p1.x;
+    const dy = p2.y - p1.y;
+    const a = Math.atan2(dy, dx) - Math.PI * 0.5;
 
     tangent(p1.x + dx * 0.5, p1.y + dy * 0.5, a, 900);
     tangent(p1.x + dx * 0.3333, p1.y + dy * 0.3333, a, 900);
@@ -188,23 +188,22 @@ var editor = (function(updater) {
 
 \*-----------------------------------------------------------------------------------------------------------------*/
 
-var viz = (function() {
-  var c = document.getElementById('logo');
-  var ctx = c.getContext('2d');
+const viz = (function() {
+  const c = document.getElementById('logo');
+  const ctx = c.getContext('2d');
 
   c.width = c.height = 720;
 
   function render() {
-    var
-      points = [],
-      cfg = db.getBound(),
-      offset = cfg.offset / 180 * Math.PI,
-      rot = cfg.rotation / 180 * Math.PI,
-      angle = (Math.PI * 2) / cfg.segments;
+    const points = [];
+    const cfg = db.getBound();
+    const offset = cfg.offset / 180 * Math.PI;
+    const rot = cfg.rotation / 180 * Math.PI;
+    const angle = (Math.PI * 2) / cfg.segments;
 
     // clone and adjust points
     editor.points.forEach(function(oldPoint) {
-      var point = oldPoint.clone();
+      const point = oldPoint.clone();
       point.scale(1 / editor.scale.x, 1 / editor.scale.y);
       point.translate(-editor.translate.x, -editor.translate.y);
       points.push(point);
@@ -224,7 +223,7 @@ var viz = (function() {
 
     ctx.beginPath();
 
-    for(var i = 0; i < cfg.segments; i++) {
+    for(let i = 0; i < cfg.segments; i++) {
       ctx.setTransform(cfg.mirror ? -cfg.glScale : cfg.glScale, 0, 0, cfg.glScale, c.width >> 1, c.height >> 1);
       ctx.rotate(offset + i * angle);
       ctx.translate(cfg.radius, 0);
@@ -268,10 +267,9 @@ function getBoxPath(ctx, points) {
 
 function getGoldenSpiral(ctx, cx, cy, turns, scale, startAngle, mirror) {
 
-  var
-    c = 1.3584562741829884,    // <= Math.pow(1 + Math.sqrt(5)) / 2, 2 / Math.PI), phi^2/PI
-    step = Math.PI * 0.025,
-    dx, dy, rad;
+  const c = 1.3584562741829884;    // <= Math.pow(1 + Math.sqrt(5)) / 2, 2 / Math.PI), phi^2/PI
+  const step = Math.PI * 0.025;
+  let dx, dy, rad;
 
   turns = Math.max(+turns, 2) * 2 * Math.PI;
 
@@ -280,7 +278,7 @@ function getGoldenSpiral(ctx, cx, cy, turns, scale, startAngle, mirror) {
   ctx.rotate(startAngle || 0);
   ctx.moveTo(1, 0);
 
-  for(var i = step; i <= turns; i += step) {
+  for(let i = step; i <= turns; i += step) {
     dx = Math.cos(i);
     dy = Math.sin(i);
     rad = Math.pow(c, i);
@@ -289,7 +287,7 @@ function getGoldenSpiral(ctx, cx, cy, turns, scale, startAngle, mirror) {
 }
 
 function load() {
-  var data = localStorage.getItem('snapshots');
+  const data = localStorage.getItem('snapshots');
   if ( data ) {
     snapshots = JSON.parse(data);
   }
@@ -312,7 +310,7 @@ function createSnapshot() {
 }
 
 function setSnapshot(id) {
-  var snapshot, i = 0;
+  let snapshot, i = 0;
   while( snapshot = snapshots[ i++ ] ) {
     if ( snapshot.id === id ) break;
   }
@@ -325,7 +323,7 @@ function setSnapshot(id) {
 }
 
 function getId() {
-  var id = localStorage.getItem('_id') | 0;
+  let id = localStorage.getItem('_id') | 0;
   localStorage.setItem('_id', ++id);
   return id;
 }

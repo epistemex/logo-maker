@@ -27,17 +27,17 @@
 <script src="js/canvas-mouse.min.js"></script>
 <script>
   	// Creates an instance with a common callback
-    var db = new Dashboard({callback: function() {update()} })
+    const db = new Dashboard({ callback: function() {update();} })
 
-    // Build dashboard - we could call add for each item; here we use an array instead
+      // Build dashboard - we could call add for each item; here we use an array instead
       .add([
-        {type: "text"  , text: "<h2>Part settings</h2>", raw: true},
-        {type: "slider", label: "Segments", min: 1, max: 32, value: 5, live: true, bind: "segments"},
-        {type: "slider", label: "Global Scale", min: 0.05, max: 5, value: 1, step: 0.05, formatter: fmtTwo, live: true, bind: "glScale"},
-        {type: "slider", label: "Offset angle", min: -180, max: 180, value: -17.6, step: 0.1, formatter: fmtOne, live: true, bind: "offset"},
-        {type: "separator"},
-        {type: "slider", label: "Part Rotation", min: -180, max: 180, value: 0, step: 0.25, formatter: fmtTwo, live: true, bind: "rotation"},
-        {type: "slider", label: "Part Radius", min: -500, max: 500, value: 150, live: true, bind: "radius"},
+        { type: 'text', text: '<h2>Part settings</h2>', raw: true },
+        { type: 'slider', label: 'Segments', min: 1, max: 32, value: 5, live: true, bind: 'segments' },
+        { type: 'slider', label: 'Global Scale', min: 0.05, max: 5, value: 1, step: 0.05, formatter: fmtTwo, live: true, bind: 'glScale' },
+        { type: 'slider', label: 'Offset angle', min: -180, max: 180, value: -17.6, step: 0.1, formatter: fmtOne, live: true, bind: 'offset' },
+        { type: 'separator' },
+        { type: 'slider', label: 'Part Rotation', min: -180, max: 180, value: 0, step: 0.25, formatter: fmtTwo, live: true, bind: 'rotation' },
+        { type: 'slider', label: 'Part Radius', min: -500, max: 500, value: 150, live: true, bind: 'radius' },
         {type: "slider", label: "Part Scale", min: 1, max: 250, value: 100, live: true, bind: "scale"},
         {type: "slider", label: "Part Offset X", min: -100, max: 100, value: 0, step: 0.5, formatter: fmtOne, live: true, bind: "offsetX"},
         {type: "slider", label: "Part Offset Y", min: -100, max: 100, value: 0, step: 0.5, formatter: fmtOne, live: true, bind: "offsetY"},
